@@ -406,3 +406,22 @@ body {
     min-height: 44px; /* Better touch target on mobile */
   }
 }
+
+/* Dark Theme Overrides */
+[data-theme='dark'] {
+  --gray-900: #f8f9fa;
+  --gray-700: #dee2e6;
+  --gray-300: #495057;
+  --gray-100: #212529;
+  --white: #343a40;
+  --primary-blue: #339af0;
+  --primary-blue-dark: #1c7ed6;
+  --primary-blue-light: #0b7285;
+  background-color: var(--gray-100);
+  color: var(--gray-900);
+}
+
+[data-theme='dark'] body {
+  background-color: var(--gray-100);
+  color: var(--gray-900);
+}
