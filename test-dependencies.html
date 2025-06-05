@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Test Dependencies</title>
+</head>
+<body>    <h1>Test Dependencies Setup</h1>
+    <p>Open this file in a browser to add test dependencies to localStorage</p>
+    
+    <button onclick="clearStorage()">Clear Storage (to see new sample data)</button>
+    <button onclick="addDependencies()">Add Sample Dependencies</button>
+    <button onclick="showCurrentData()">Show Current Data</button>
+    
+    <div id="output"></div>
+    
+    <script>
+        function addDependencies() {
+            // Get current tasks from localStorage
+            const tasksJson = localStorage.getItem('schoolgantt-tasks');
+            let tasks = tasksJson ? JSON.parse(tasksJson) : [];
+            
+            if (tasks.length < 4) {
+                alert('Not enough tasks found. Please start the application first to generate sample tasks.');
+                return;
+            }
+            
+            // Add dependencies between tasks
+            // Task 1 (Research) -> Task 2 (Outline)
+            // Task 2 (Outline) -> Task 3 (Implementation)
+            // Task 3 (Implementation) -> Task 4 (First Draft)
+              // Update tasks with dependencies
+            if (tasks.length >= 2) {
+                tasks[1].dependencies = [{
+                    fromTaskId: tasks[0].id,
+                    type: 'finish-to-start'
+                }];
+            }
+            
+            if (tasks.length >= 3) {
+                tasks[2].dependencies = [{
+                    fromTaskId: tasks[1].id,
+                    type: 'finish-to-start'
+                }];
+            }
+            
+            if (tasks.length >= 4) {
+                tasks[3].dependencies = [{
+                    fromTaskId: tasks[2].id,
+                    type: 'finish-to-start'
+                }];
+            }
+            
+            // Save back to localStorage
+            localStorage.setItem('schoolgantt-tasks', JSON.stringify(tasks));
+            
+            document.getElementById('output').innerHTML = 
+                '<p style="color: green;">Dependencies added successfully!</p>' +
+                '<p>Dependencies created:</p>' +
+                '<ul>' +
+                '<li>Task 2 depends on Task 1 (finish-to-start)</li>' +
+                '<li>Task 3 depends on Task 2 (finish-to-start)</li>' +
+                '<li>Task 4 depends on Task 3 (finish-to-start)</li>' +
+                '</ul>' +
+                '<p>Refresh your application to see the dependency arrows!</p>';
+        }
+          function clearStorage() {
+            localStorage.removeItem('schoolgantt-tasks');
+            localStorage.removeItem('schoolgantt-project');
+            document.getElementById('output').innerHTML = '<p style="color: red;">Storage cleared! Refresh your app to see new sample data with dependencies.</p>';
+        }
+        
+        function showCurrentData() {
+            const tasks = JSON.parse(localStorage.getItem('schoolgantt-tasks') || '[]');
+            const output = document.getElementById('output');
+            
+            if (tasks.length === 0) {
+                output.innerHTML = '<p>No tasks found in localStorage</p>';
+                return;
+            }
+            
+            let html = '<h3>Current Tasks:</h3><ul>';
+            tasks.forEach((task, index) => {
+                html += `<li><strong>${task.title}</strong> (${task.id})`;                if (task.dependencies && task.dependencies.length > 0) {
+                    html += '<br>Dependencies: ';
+                    task.dependencies.forEach(dep => {
+                        const depTask = tasks.find(t => t.id === dep.fromTaskId);
+                        html += `${depTask ? depTask.title : dep.fromTaskId} (${dep.type}) `;
+                    });
+                }
+                html += '</li>';
+            });
+            html += '</ul>';
+            
+            output.innerHTML = html;
+        }
+        
+        // Show current data on load
+        window.onload = showCurrentData;
+    </script>
+</body>
+</html>

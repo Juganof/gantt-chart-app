@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "generatedAt": "2025-06-01T20:56:46.608Z",
+    "tasksAnalyzed": 11,
+    "totalTasks": 15,
+    "analysisCount": 11,
+    "thresholdScore": 6,
+    "projectName": "Taskmaster",
+    "usedResearch": false
+  },
+  "complexityAnalysis": [
+    {
+      "taskId": 3,
+      "taskTitle": "Design data models and storage schema",
+      "complexityScore": 8,
+      "recommendedSubtasks": 5,
+      "expansionPrompt": "Break down the data model design into subtasks including: 1) Define task entity structure, 2) Define project metadata structure, 3) Design relationships between entities, 4) Implement LocalStorage integration, 5) Create validation rules for data integrity.",
+      "reasoning": "This task involves designing complex data structures and implementing persistence, requiring careful planning of entity relationships and storage integration."
+    },
+    {
+      "taskId": 6,
+      "taskTitle": "Create task dependency system",
+      "complexityScore": 7,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Divide into: 1) Implement dependency data structure, 2) Create visual dependency arrows, 3) Develop circular dependency detection, 4) Implement dependency validation logic.",
+      "reasoning": "The dependency system requires both visual representation and complex logical validation, making it moderately complex."
+    },
+    {
+      "taskId": 7,
+      "taskTitle": "Implement drag-and-drop functionality",
+      "complexityScore": 6,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Split into: 1) Implement basic drag handlers, 2) Add visual feedback during drag, 3) Implement drop validation, 4) Connect to data persistence.",
+      "reasoning": "Drag-and-drop requires handling user interactions and visual feedback, but is a well-understood pattern with established solutions."
+    },
+    {
+      "taskId": 8,
+      "taskTitle": "Implement data export/import functionality",
+      "complexityScore": 5,
+      "recommendedSubtasks": 3,
+      "expansionPrompt": "Break down into: 1) Implement JSON export, 2) Implement JSON import with validation, 3) Add CSV export option.",
+      "reasoning": "While important, this is a relatively straightforward feature with clear input/output requirements."
+    },
+    {
+      "taskId": 9,
+      "taskTitle": "Add keyboard shortcuts",
+      "complexityScore": 4,
+      "recommendedSubtasks": 3,
+      "expansionPrompt": "Divide into: 1) Map common actions to shortcuts, 2) Implement shortcut handlers, 3) Create help documentation.",
+      "reasoning": "Keyboard shortcuts are useful but not complex to implement, though they require careful documentation."
+    },
+    {
+      "taskId": 10,
+      "taskTitle": "Develop automated tests",
+      "complexityScore": 9,
+      "recommendedSubtasks": 6,
+      "expansionPrompt": "Break into: 1) Unit test framework setup, 2) Core functionality tests, 3) Integration tests, 4) End-to-end tests, 5) Test data generation, 6) CI integration.",
+      "reasoning": "Comprehensive testing requires multiple types of tests and integration with the development workflow, making it highly complex."
+    },
+    {
+      "taskId": 11,
+      "taskTitle": "Performance optimization",
+      "complexityScore": 8,
+      "recommendedSubtasks": 5,
+      "expansionPrompt": "Split into: 1) Performance profiling, 2) Rendering optimization, 3) Interaction optimization, 4) Memory management, 5) Large dataset testing.",
+      "reasoning": "Performance work requires deep analysis and multiple optimization approaches across different aspects of the application."
+    },
+    {
+      "taskId": 12,
+      "taskTitle": "Browser compatibility testing",
+      "complexityScore": 7,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Divide into: 1) Test matrix creation, 2) Automated cross-browser tests, 3) Manual verification, 4) Compatibility fixes.",
+      "reasoning": "Browser testing is time-consuming and may require specific fixes for different browsers, though tools can help automate parts."
+    },
+    {
+      "taskId": 13,
+      "taskTitle": "Create user documentation",
+      "complexityScore": 5,
+      "recommendedSubtasks": 3,
+      "expansionPrompt": "Break into: 1) Outline documentation structure, 2) Write core feature documentation, 3) Create keyboard shortcuts reference.",
+      "reasoning": "Documentation is important but less technically complex, primarily requiring clear communication."
+    },
+    {
+      "taskId": 14,
+      "taskTitle": "Setup deployment pipeline",
+      "complexityScore": 6,
+      "recommendedSubtasks": 4,
+      "expansionPrompt": "Split into: 1) Build configuration, 2) Deployment configuration, 3) CI setup, 4) Staging environment setup.",
+      "reasoning": "CI/CD setup requires multiple configuration steps but follows established patterns for static sites."
+    },
+    {
+      "taskId": 15,
+      "taskTitle": "Implement comprehensive error handling",
+      "complexityScore": 7,
+      "recommendedSubtasks": 5,
+      "expansionPrompt": "Divide into: 1) Identify error points, 2) Implement basic error handling, 3) Create error logging, 4) Develop user messaging, 5) Test error scenarios.",
+      "reasoning": "Error handling touches many parts of the application and requires both technical implementation and user communication."
+    }
+  ]
+}

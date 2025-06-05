@@ -1,0 +1,16 @@
+{
+    "mcpServers": {
+        "task-master-ai": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "--package=task-master-ai",
+                "task-master-ai"
+            ],
+            "env": {
+                "OPENROUTER_API_KEY": "sk-c3258cd929ea49ada0bd21f06aee522a",
+                "OPENAI_BASE_URL": "https://openrouter.ai/api/v1"
+            }
+        }
+    }
+}

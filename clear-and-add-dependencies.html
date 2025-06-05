@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear Data and Add Dependencies</title>
+</head>
+<body>
+    <h1>Clear Data and Add Sample Tasks with Dependencies</h1>
+    <button onclick="clearAndAddSampleData()">Clear Data and Add Dependencies</button>
+    <div id="status"></div>
+
+    <script>
+        function generateId() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function clearAndAddSampleData() {
+            // Clear existing data
+            localStorage.removeItem('schoolgantt-tasks');
+            localStorage.removeItem('schoolgantt-project');
+            
+            const today = new Date();
+            
+            // Create tasks with specific IDs for dependency references
+            const researchTaskId = generateId();
+            const outlineTaskId = generateId();
+            const implementTaskId = generateId();
+            const draftTaskId = generateId();
+            
+            const sampleTasks = [
+                {
+                    id: researchTaskId,
+                    title: 'Research Project Topic',
+                    description: 'Conduct initial research and select a topic for the semester project',
+                    startDate: today.toISOString().split('T')[0],
+                    endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                    priority: 'high',
+                    status: 'completed',
+                    estimatedTime: '1 week',
+                    complexity: 3,
+                    tags: ['research', 'planning'],
+                    dependencies: [],
+                    subtasks: [],
+                    created: new Date().toISOString(),
+                    updated: new Date().toISOString(),
+                    aiGenerated: false
+                },
+                {
+                    id: outlineTaskId,
+                    title: 'Create Project Outline',
+                    description: 'Develop a detailed outline and timeline for the project',
+                    startDate: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                    endDate: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                    priority: 'high',
+                    status: 'in-progress',
+                    estimatedTime: '3 days',
+                    complexity: 5,
+                    tags: ['planning', 'outline'],
+                    dependencies: [
+                        {
+                            fromTaskId: researchTaskId,
+                            type: 'finish-to-start',
+                            lag: 0
+                        }
+                    ],
+                    subtasks: [],
+                    created: new Date().toISOString(),
+                    updated: new Date().toISOString(),
+                    aiGenerated: false
+                },
+                {
+                    id: implementTaskId,
+                    title: 'Implement drag-and-drop functionality',
+                    description: 'Add drag-drop capabilities for task duration adjustment and timeline modification',
+                    startDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                    endDate: new Date(Date.now() + 12 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                    priority: 'medium',
+                    status: 'in-progress',
+                    estimatedTime: '3 days',
+                    complexity: 7,
+                    tags: ['feature', 'frontend'],
+                    dependencies: [
+                        {
+                            fromTaskId: outlineTaskId,
+                            type: 'finish-to-start',
+                            lag: 0
+                        }
+                    ],
+                    subtasks: [],
+                    created: new Date().toISOString(),
+                    updated: new Date().toISOString(),
+                    aiGenerated: true
+                },
+                {
+                    id: draftTaskId,
+                    title: 'Write First Draft',
+                    description: 'Complete the first draft of the project report',
+                    startDate: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                    endDate: new Date(Date.now() + 28 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+                    priority: 'medium',
+                    status: 'todo',
+                    estimatedTime: '2 weeks',
+                    complexity: 8,
+                    tags: ['writing', 'draft'],
+                    dependencies: [
+                        {
+                            fromTaskId: implementTaskId,
+                            type: 'finish-to-start',
+                            lag: 0
+                        }
+                    ],
+                    subtasks: [],
+                    created: new Date().toISOString(),
+                    updated: new Date().toISOString(),
+                    aiGenerated: false
+                }
+            ];
+
+            // Save to localStorage
+            localStorage.setItem('schoolgantt-tasks', JSON.stringify(sampleTasks));
+            
+            const project = {
+                name: 'My School Project',
+                created: new Date().toISOString()
+            };
+            localStorage.setItem('schoolgantt-project', JSON.stringify(project));
+            
+            document.getElementById('status').innerHTML = `
+                <p style="color: green;">✅ Successfully added ${sampleTasks.length} tasks with dependencies!</p>
+                <p>Refresh your Gantt chart application to see the dependency arrows.</p>
+                <h3>Dependencies created:</h3>
+                <ul>
+                    <li>Create Project Outline → depends on → Research Project Topic</li>
+                    <li>Implement drag-and-drop → depends on → Create Project Outline</li>
+                    <li>Write First Draft → depends on → Implement drag-and-drop</li>
+                </ul>
+            `;
+        }
+    </script>
+</body>
+</html>
