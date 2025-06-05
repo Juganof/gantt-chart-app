@@ -21,6 +21,7 @@
             @manage-projects="handleManageProjects"
             @project-settings="handleProjectSettings"
           />
+          <ThemeToggle />
         </div>
       </div>
     </header>
@@ -57,6 +58,7 @@ import ProjectCreateModal from './components/modals/ProjectCreateModal.vue'
 import ProjectSettingsModal from './components/modals/ProjectSettingsModal.vue'
 import MainNavigation from './components/navigation/MainNavigation.vue'
 import ProjectSelector from './components/navigation/ProjectSelector.vue'
+import ThemeToggle from './components/navigation/ThemeToggle.vue'
 
 export default {
   name: 'App',
@@ -64,7 +66,8 @@ export default {
     ProjectSelector,
     ProjectSettingsModal,
     ProjectCreateModal,
-    MainNavigation
+    MainNavigation,
+    ThemeToggle
   },
   data() {
     return {
