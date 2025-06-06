@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [vue()],
-  
+
   // Path aliases for cleaner imports
   resolve: {
     alias: {
